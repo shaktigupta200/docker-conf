@@ -1,0 +1,37 @@
+###################### Metricbeat Configuration Example #######################
+#==========================  Modules configuration ============================
+metricbeat.modules:
+- module: docker
+  metricsets: ["container", "cpu", "diskio", "healthcheck", "info", "memory", "network"]
+  hosts: ["unix:///var/run/docker.sock"]
+  period: 10s
+
+- module: system
+  period: 10s
+  metricsets:
+    - cpu
+    - load
+    - memory
+    - network
+    - process
+    - process_summary
+    - core
+    - diskio
+    - socket
+#==================== Elasticsearch template setting ==========================
+
+setup.template.settings:
+  index.number_of_shards: 1
+  index.codec: best_compression
+  #_source.enabled: false
+#============================== Dashboards =====================================
+# These settings control loading the sample dashboards to the Kibana index. Loading
+# the dashboards is disabled by default and can be enabled either by setting the
+# options here, or by using the `-setup` CLI flag or the `setup` command.
+setup.dashboards.enabled: true
+#============================== Kibana =====================================
+setup.kibana:
+  host: "10.22.162.21:5601"
+#-------------------------- Elasticsearch output ------------------------------
+output.elasticsearch:
+  hosts: ["10.22.162.21:9500"]
