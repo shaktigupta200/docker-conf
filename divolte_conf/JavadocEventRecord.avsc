@@ -3,7 +3,7 @@
     "type": "record",
     "name": "JavadocEventRecord",
     "fields": [
-	{ "name":"event", "type":"map", "type":["null", { "type":"map", "values":"string" }  ], "default": null},	
+	{ "name":"event", "type":"map", "type":["null", { "type":"map", "values": ["string","null"] }  ], "default": null},	
 	{ "name": "detectedDuplicate",       "type": "boolean"},
         { "name": "detectedCorruption",      "type": "boolean"},
         { "name": "firstInSession",          "type": "boolean"},
